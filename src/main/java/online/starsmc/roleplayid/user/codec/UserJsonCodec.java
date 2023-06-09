@@ -4,6 +4,8 @@ import com.google.gson.*;
 import online.starsmc.roleplayid.user.UserModel;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class UserJsonCodec implements JsonSerializer<UserModel>, JsonDeserializer<UserModel> {
@@ -15,6 +17,12 @@ public class UserJsonCodec implements JsonSerializer<UserModel>, JsonDeserialize
         serializedModel.addProperty("id", model.getId());
         serializedModel.addProperty("realName", model.getRealName());
         serializedModel.addProperty("gameId", model.getGameId());
+
+        JsonArray serializedItems = new JsonArray();
+        for(Integer item : model.getLatestGameIds()) {
+            serializedItems.add(item);
+        }
+        serializedModel.add("latestGameIds", serializedItems);
 
         return serializedModel;
     }
@@ -28,6 +36,12 @@ public class UserJsonCodec implements JsonSerializer<UserModel>, JsonDeserialize
         String realName = serializedModel.get("realName").getAsString();
         int gameId = serializedModel.get("gameId").getAsInt();
 
-        return new UserModel(uuid, realName, gameId);
+        JsonArray itemsArray = serializedModel.get("latestGameIds").getAsJsonArray();
+        List<Integer> latestGameIds = new ArrayList<>();
+        for(JsonElement item : itemsArray) {
+            latestGameIds.add(item.getAsInt());
+        }
+
+        return new UserModel(uuid, realName, gameId, latestGameIds);
     }
 }

@@ -18,6 +18,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.Objects;
 
 @Command(value = "roleplayid")
 @Permission("basictp.admin")
@@ -40,7 +42,7 @@ public class MainCommand extends BaseCommand {
                 UserModel userModel = userManager.getModel(player.getUniqueId().toString());
 
                 if (userModel == null) {
-                    userModel = new UserModel(player.getUniqueId(), player.getName(), new UniqueIDGenerator().generatePositiveUniqueID());
+                    userModel = new UserModel(player.getUniqueId(), player.getName(), new UniqueIDGenerator().generatePositiveUniqueID(), new ArrayList<>());
                     userManager.create(player, userModel);
                     return;
                 }
@@ -56,7 +58,7 @@ public class MainCommand extends BaseCommand {
         UserModel userModel = userManager.getModel(player.getUniqueId().toString());
 
         if (userModel == null) {
-            userModel = new UserModel(player.getUniqueId(), player.getName(), new UniqueIDGenerator().generatePositiveUniqueID());
+            userModel = new UserModel(player.getUniqueId(), player.getName(), new UniqueIDGenerator().generatePositiveUniqueID(), new ArrayList<>());
             userManager.create(player, userModel);
             return;
         }

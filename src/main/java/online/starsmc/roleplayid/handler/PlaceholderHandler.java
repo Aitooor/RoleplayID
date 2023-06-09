@@ -7,6 +7,8 @@ import online.starsmc.roleplayid.user.UserManager;
 import online.starsmc.roleplayid.util.UniqueIDGenerator;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
+
 public class PlaceholderHandler extends PlaceholderExpansion {
 
     private final Main plugin;
@@ -24,7 +26,7 @@ public class PlaceholderHandler extends PlaceholderExpansion {
         // %roleplayid_gameId%
         if (params.equalsIgnoreCase("gameId")) {
             if(userModel == null) {
-                userModel = new UserModel(player.getUniqueId(), player.getName(), new UniqueIDGenerator().generatePositiveUniqueID());
+                userModel = new UserModel(player.getUniqueId(), player.getName(), new UniqueIDGenerator().generatePositiveUniqueID(), new ArrayList<>());
                 userManager.create(player, userModel);
             }
 
@@ -34,7 +36,7 @@ public class PlaceholderHandler extends PlaceholderExpansion {
         // %roleplayid_realname%
         if (params.equalsIgnoreCase("realname")) {
             if(userModel == null) {
-                userModel = new UserModel(player.getUniqueId(), player.getName(), new UniqueIDGenerator().generatePositiveUniqueID());
+                userModel = new UserModel(player.getUniqueId(), player.getName(), new UniqueIDGenerator().generatePositiveUniqueID(), new ArrayList<>());
                 userManager.create(player, userModel);
             }
 

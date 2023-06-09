@@ -14,6 +14,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.server.PluginDisableEvent;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.Set;
 
 public class PlayerListener implements Listener {
@@ -29,12 +30,13 @@ public class PlayerListener implements Listener {
         UserModel userModel = userManager.getModel(player.getUniqueId().toString());
 
         if(userModel == null) {
-            userModel = new UserModel(player.getUniqueId(), player.getName(), new UniqueIDGenerator().generatePositiveUniqueID());
+            userModel = new UserModel(player.getUniqueId(), player.getName(), new UniqueIDGenerator().generatePositiveUniqueID(), new ArrayList<>());
             userManager.create(player, userModel);
             return;
         }
 
-        userManager.setGameId(player, player,new UniqueIDGenerator().generatePositiveUniqueID());
+        userManager.addLatestGameId(player, player);
+        userManager.setGameId(player, player, new UniqueIDGenerator().generatePositiveUniqueID());
         userManager.setRealName(player);
     }
 
@@ -45,7 +47,7 @@ public class PlayerListener implements Listener {
                 UserModel userModel = userManager.getModel(player.getUniqueId().toString());
 
                 if (userModel == null) {
-                    userModel = new UserModel(player.getUniqueId(), player.getName(), new UniqueIDGenerator().generatePositiveUniqueID());
+                    userModel = new UserModel(player.getUniqueId(), player.getName(), new UniqueIDGenerator().generatePositiveUniqueID(), new ArrayList<>());
                     userManager.create(player, userModel);
                     return;
                 }

@@ -6,6 +6,7 @@ import online.starsmc.roleplayid.user.UserModel;
 import online.starsmc.roleplayid.user.UserManager;
 import online.starsmc.roleplayid.util.UniqueIDGenerator;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -47,17 +48,17 @@ public class PlaceholderHandler extends PlaceholderExpansion {
     }
 
     @Override
-    public String getIdentifier() {
+    public @NotNull String getIdentifier() {
         return "roleplayid";
     }
 
     @Override
-    public String getAuthor() {
+    public @NotNull String getAuthor() {
         return String.valueOf(plugin.getDescription().getAuthors());
     }
 
     @Override
-    public String getVersion() {
+    public @NotNull String getVersion() {
         return plugin.getDescription().getVersion();
     }
 }

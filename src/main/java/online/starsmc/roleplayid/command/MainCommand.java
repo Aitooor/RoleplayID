@@ -19,7 +19,6 @@ import org.bukkit.entity.Player;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
-import java.util.Objects;
 
 @Command(value = "roleplayid")
 @Permission("basictp.admin")

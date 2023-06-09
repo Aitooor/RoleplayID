@@ -4,8 +4,6 @@ import dev.triumphteam.cmd.bukkit.annotation.Permission;
 import dev.triumphteam.cmd.core.BaseCommand;
 import dev.triumphteam.cmd.core.annotation.Command;
 import dev.triumphteam.cmd.core.annotation.Default;
-import dev.triumphteam.cmd.core.annotation.Join;
-import dev.triumphteam.cmd.core.annotation.SubCommand;
 import online.starsmc.roleplayid.Main;
 import online.starsmc.roleplayid.handler.PlaceholderHandler;
 import online.starsmc.roleplayid.user.UserManager;

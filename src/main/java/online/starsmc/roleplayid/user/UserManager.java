@@ -58,22 +58,6 @@ public class UserManager {
         }
     }
 
-    public String getRealName(Player player) {
-        try {
-            UserModel userModel = this.getModel(player.getUniqueId().toString());
-
-            if(userModel == null) {
-                userModel = new UserModel(player.getUniqueId(), player.getName(), new UniqueIDGenerator().generatePositiveUniqueID(), new ArrayList<>());
-            }
-
-            return userModel.getRealName();
-        } catch (Exception e) {
-            ChatUtil.sendMsgPlayerPrefix(player, "&cCan't get the user real name");
-            plugin.getLogger().log(Level.WARNING, "Error, can't get the user real name", e);
-        }
-        return null;
-    }
-
     public void setRealName(Player player) {
         try {
             UserModel userModel = this.getModel(player.getUniqueId().toString());

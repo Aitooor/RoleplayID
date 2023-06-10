@@ -60,7 +60,7 @@ public class MainCommand extends BaseCommand {
                 userManager.reloadCache(player);
             });
         }
-        ChatUtil.sendMsgPlayerPrefix(sender, "&aPlugin reloaded correctly");
+        ChatUtil.sendMsgPlayerPrefix(sender, "&aReloaded all player Game IDs");
     }
 
     @SubCommand(value = "reload_player")

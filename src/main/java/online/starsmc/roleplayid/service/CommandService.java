@@ -56,7 +56,7 @@ public class CommandService implements Service{
         manager.registerMessage(MessageKey.NOT_ENOUGH_ARGUMENTS, (sender, context) -> {
             ChatUtil.sendMsgPlayer(sender, "");
             ChatUtil.sendMsgPlayer(sender, "&7Use space and tab key for auto complete.");
-            if(context.getSubCommand().isEmpty()) {
+            if(context.getSubCommand().isEmpty() || context.getSubCommand().equals("TH_DEFAULT")) {
                 ChatUtil.sendMsgPlayer(sender, "&cLike: /" + context.getCommand() + " (args)");
             } else {
                 ChatUtil.sendMsgPlayer(sender, "&cLike: /" + context.getCommand() + " " + context.getSubCommand() + " (args)");

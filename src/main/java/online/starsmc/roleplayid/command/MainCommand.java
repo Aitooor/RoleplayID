@@ -32,13 +32,13 @@ public class MainCommand extends BaseCommand {
         List<String> list = new ArrayList<>();
         list.add("");
         list.add("&eHelp of RoleplayID command");
-        list.add("&7All commands have autocomplete with tab key");
+        list.add("  &7All commands have autocomplete with tab key");
         list.add("");
-        list.add(" &a/roleplayid help &8- &7Show this help message");
-        list.add(" &a/roleplayid reloadall &8- &7Reload the game id for all players online");
-        list.add(" &a/roleplayid reload_player &8- &7Reload the game id for target player");
-        list.add(" &a/roleplayid check &8- &7Check the game id of the target player");
-        list.add(" &a/latestids (targetPlayer) 1/4 &8- &7Check a list of last ids of the target player");
+        list.add(" &8- &a/roleplayid help &8- &7Show this help message");
+        list.add(" &8- &a/roleplayid reloadall &8- &7Reload the game id for all players online");
+        list.add(" &8- &a/roleplayid reload_player &8- &7Reload the game id for target player");
+        list.add(" &8- &a/roleplayid check &8- &7Check the game id of the target player");
+        list.add(" &8- &a/latestids (targetPlayer) 1/4 &8- &7Check a list of last ids of the target player");
         list.add("");
         list.forEach(s -> ChatUtil.sendMsgPlayer(sender, s));
     }

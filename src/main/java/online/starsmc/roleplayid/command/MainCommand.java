@@ -2,10 +2,7 @@ package online.starsmc.roleplayid.command;
 
 import dev.triumphteam.cmd.bukkit.annotation.Permission;
 import dev.triumphteam.cmd.core.BaseCommand;
-import dev.triumphteam.cmd.core.annotation.Command;
-import dev.triumphteam.cmd.core.annotation.Default;
-import dev.triumphteam.cmd.core.annotation.Optional;
-import dev.triumphteam.cmd.core.annotation.SubCommand;
+import dev.triumphteam.cmd.core.annotation.*;
 import online.starsmc.roleplayid.Main;
 import online.starsmc.roleplayid.handler.PlaceholderHandler;
 import online.starsmc.roleplayid.user.UserManager;
@@ -19,6 +16,7 @@ import org.bukkit.entity.Player;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
+import java.util.List;
 
 @Command(value = "roleplayid")
 @Permission("basictp.admin")
@@ -28,12 +26,23 @@ public class MainCommand extends BaseCommand {
     @Inject private UserManager userManager;
     @Inject private PlaceholderHandler placeholderHandler;
 
-    @Default()
-    public void noArg(CommandSender sender){
-        ChatUtil.sendMsgPlayerPrefix(sender, "&cUse: /roleplayid check (targetPlayer)");
+    @SubCommand(value = "help")
+    public void help(CommandSender sender) {
+        List<String> list = new ArrayList<>();
+        list.add("");
+        list.add("&eHelp of RoleplayID command");
+        list.add("&7All commands have autocomplete with tab key");
+        list.add("");
+        list.add(" &a/roleplayid help &8- &7Show this help message");
+        list.add(" &a/roleplayid reloadall &8- &7Reload the game id for all players online");
+        list.add(" &a/roleplayid reload_player &8- &7Reload the game id for target player");
+        list.add(" &a/roleplayid check &8- &7Check the game id of the target player");
+        list.add(" &a/latestids (targetPlayer) 1/4 &8- &7Check a list of last ids of the target player");
+        list.add("");
+        list.forEach(s -> ChatUtil.sendMsgPlayer(sender, s));
     }
 
-    @SubCommand(value = "reload")
+    @SubCommand(value = "reloadall")
     public void reload(CommandSender sender) {
         if (Bukkit.getOnlinePlayers().size() > 0) {
             new UniqueIDGenerator().clearGeneratedIds();
@@ -67,7 +76,7 @@ public class MainCommand extends BaseCommand {
     }
 
     @SubCommand(value = "check")
-    public void check(CommandSender sender, @Optional String target) {
+    public void check(CommandSender sender, @Optional @Suggestion("players") String target) {
         if(target == null) {
             ChatUtil.sendMsgPlayerPrefix(sender, "&cUse: /roleplayid check (targetPlayer)");
             return;

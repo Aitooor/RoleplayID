@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Command(value = "latestids")
-@Permission("basictp.admin")
+@Permission("roleplayid.latestids")
 public class LatestIdsCommand extends BaseCommand {
 
     @Inject private Main plugin;

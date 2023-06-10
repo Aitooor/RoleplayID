@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Command(value = "roleplayid")
-@Permission("basictp.admin")
+@Permission("roleplayid.admin")
 public class MainCommand extends BaseCommand {
 
     @Inject private Main plugin;
@@ -27,6 +27,7 @@ public class MainCommand extends BaseCommand {
     @Inject private PlaceholderHandler placeholderHandler;
 
     @SubCommand(value = "help")
+    @Permission(value = "roleplayid.help")
     public void help(CommandSender sender) {
         List<String> list = new ArrayList<>();
         list.add("");
@@ -43,6 +44,7 @@ public class MainCommand extends BaseCommand {
     }
 
     @SubCommand(value = "reloadall")
+    @Permission(value = "roleplayid.reloadall")
     public void reload(CommandSender sender) {
         if (Bukkit.getOnlinePlayers().size() > 0) {
             new UniqueIDGenerator().clearGeneratedIds();
@@ -62,6 +64,7 @@ public class MainCommand extends BaseCommand {
     }
 
     @SubCommand(value = "reload_player")
+    @Permission(value = "roleplayid.reload_player")
     public void reloadPlayer(CommandSender sender, Player player) {
         UserModel userModel = userManager.getModel(player.getUniqueId().toString());
 
@@ -76,6 +79,7 @@ public class MainCommand extends BaseCommand {
     }
 
     @SubCommand(value = "check")
+    @Permission(value = "roleplayid.check")
     public void check(CommandSender sender, @Optional @Suggestion("players") String target) {
         if(target == null) {
             ChatUtil.sendMsgPlayerPrefix(sender, "&cUse: /roleplayid check (targetPlayer)");

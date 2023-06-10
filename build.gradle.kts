@@ -34,8 +34,6 @@ tasks {
         archiveVersion.set("${project.properties.getValue("shaded_version")}")
         archiveClassifier.set("")
 
-        relocate("dev.triumphteam.gui", "net.notchsmp.basictp.libs.gui")
-
         minimize()
     }
 }
